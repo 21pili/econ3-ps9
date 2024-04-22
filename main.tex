@@ -1,0 +1,66 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{titling}
+\usepackage{fancyhdr}
+\usepackage{lipsum}
+\usepackage{parskip}
+\usepackage{forest}
+\usepackage{tikz}
+\usepackage{stmaryrd}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{alphalph}
+\usepackage{cancel}
+\usepackage{textgreek}
+\usepackage{titlesec}
+\usepackage{dsfont}
+\usepackage{caption}
+\usepackage{listings}
+
+\geometry{top=4cm, bottom=4cm, left=4cm, right=4cm}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Pierre Pili $\cdot$ Marie Gardie $\cdot$ Isée Biglietti}
+\lhead{Econometrics 3}
+\cfoot{\thepage}
+\setlength{\headheight}{14.49998pt}
+\addtolength{\topmargin}{-2.49998pt}
+
+\titleformat{\section}{\small\bfseries}{\thesection}{1em}{}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\arabic{section}.\arabic{subsection}.\alph{subsubsection}}
+
+\title{Problem Set 7}
+\author{PILI Pierre $\cdot$ GARDIE Marie $\cdot$ BIGLIETTI Isée}
+\date{\today}
+
+% Redéfinir le format de numérotation des sous-sections
+\titleformat{\subsection}
+  {\normalfont\small\bfseries}{\alph{subsection})}{1em}{}
+  
+\begin{document}
+\maketitle
+\renewcommand{\thesubsection}{\alph{subsection}}
+
+\subsection{Regress the variable survived on $female$. Report and interpret the estimated (marginal) “effect” of being female.}
+
+\subsection{Construct a 95\% confidence interval for the estimated (marginal) effect.}
+\subsection{Repeat (a) using the probit. What do you find ? Are you surprised ?}
+\stepcounter{subsection}
+\subsection{Continuing with the probit model from (c), add a numeric copy of the variable pclass to the “regression”. Interpret your results.}
+\subsection{Instead of adding a numeric copy of the variable pclass to the regression in (c), add the variable pclass to it (pclass is coded as a “factor”). Interpret your results.}
+\subsection{The model in (e) constitutes a restricted version of the model in (f). What is the restriction? Test it using a LR test. What do you find?}
+\stepcounter{subsection}
+\subsection{Starting with your model specification in (e), add the variable $fare$. Use the Wald test and the LR test to test whether the coefficient on $fare$ is equal to zero. What do you find?}
+\subsection{Starting with your model specification in (e), add the variable age. Compute the partial effect of age for a female passenger in 1st class with “average” age.}
+\subsection{Using your model specification in (j), compute the average partial effect of age. What do you find?}
+\subsection{Using your model specification in (j), plot the sorted marginal effect of age. What do you find ?}
+\end{document}
+
+
+
