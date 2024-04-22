@@ -47,10 +47,15 @@
 \maketitle
 \renewcommand{\thesubsection}{\alph{subsection}}
 
-\subsection{Regress the variable survived on $female$. Report and interpret the estimated (marginal) “effect” of being female.}
-
+\subsection{Regress the variable $survived$ on $female$. Report and interpret the estimated (marginal) “effect” of being female.}
+\input{OUTPUT/ols_a.tex}
+The dependent variable $survived$ is a binary variable. We are thus in the binary outcome framework. In this question we perform an OLS regression of the $survived$
+variable on the $female$ variable. The average survival rate was $0.191$ (see Table \ref{olsa}) while a woman would survive with a probability $0.191 + 0.536 = 0.727$.
+Being a female increases your probability of survival by $0.536$. As the $female$ variable is binary, those numbers can be interpreted as probabilities. The result is very significant, being a female on board dramatically increased your chances of survival.
 \subsection{Construct a 95\% confidence interval for the estimated (marginal) effect.}
+Using the robust estimated variance we find a confidence interval at the 95\% level for the estimated marignal effect equal to $[0.488, 0.585]$.
 \subsection{Repeat (a) using the probit. What do you find ? Are you surprised ?}
+\input{OUTPUT/probit_c.tex}
 \stepcounter{subsection}
 \subsection{Continuing with the probit model from (c), add a numeric copy of the variable pclass to the “regression”. Interpret your results.}
 \subsection{Instead of adding a numeric copy of the variable pclass to the regression in (c), add the variable pclass to it (pclass is coded as a “factor”). Interpret your results.}
