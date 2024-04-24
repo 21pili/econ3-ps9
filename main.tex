@@ -52,35 +52,43 @@
 The dependent variable $survived$ is a binary variable. We are thus in the binary outcome framework. In this question we perform an OLS regression of the $survived$
 variable on the $female$ variable. The average survival rate was $0.191$ (see Table \ref{olsa}) while a woman would survive with a probability $0.191 + 0.536 = 0.727$.
 Being a female increases your probability of survival by $0.536$. As the $female$ variable is binary, those numbers can be interpreted as probabilities. The result is very significant, being a female on board dramatically increased your chances of survival.
+
 \subsection{Construct a 95\% confidence interval for the estimated (marginal) effect.}
 Using the robust estimated variance we find a confidence interval at the 95\% level for the estimated marignal effect equal to $[0.488, 0.585]$.
+
 \subsection{Repeat (a) using the probit. What do you find ? Are you surprised ?}
 \input{OUTPUT/probit_c.tex}
-The coefficient of interest in the probit regression is $\beta = 1.479$ (see Table \ref{prbtc}) which means that the marginal effect is positive which was expected, this is not the marginal effect however. Using the margins package, I find a marginal effect of $0.434$. I do not find those results very surprising, it seems that the average marginal effect is lower than the one OLS came up with however. 
+We observe that the model now gives us a negative constant term. The coefficient of interest in the probit regression is $\beta = 1.479$ (see Table \ref{prbtc}) which means that the marginal effect is positive which was expected, this is not the marginal effect however. Using the margins package, we find a marginal effect of $0.434$. Those results does not seem very surprising, as the average marginal effect is lower than the one OLS came up with however. 
+
 \stepcounter{subsection}
 \subsection{Continuing with the probit model from (c), add a numeric copy of the variable pclass to the “regression”. Interpret your results.}
-As in the previous question, we find a significant positive impact of being a female on board and a significant negative impact of the $pclass$ variable (see Table \ref{prbte}). Using the library margins, I find a marginal effect of $0.406$ for the female variable and $-0.133$ for the $pclass$ variable. The intuition is clear, the $pclass$ goes from $1$ to $3$ from the most expensive seat to the cheapest. Being in first class increased your chances of surival by a significant amount, but still less than being a female. Leonardo Dicaprio increased both coefficients in absolute value even though their was enough space on this little piece of wood...
+As in the previous question, we find a significant positive impact of being a female on board, with a significant negative impact of the new $pclass$ variable (see Table \ref{prbte}). Using the library margins, we find a marginal effect of $0.406$ for the female variable and $-0.133$ for the $pclass$ variable. The intuition is clear, the $pclass$ goes from $1$ to $3$ from the most expensive seat to the cheapest. Being in first class increased your chances of surival by a significant amount, but still less than being a female. Leonardo Dicaprio increased both coefficients in absolute value even though their was enough space on this little piece of wood...
 \input{OUTPUT/probit_e.tex}
+
 \subsection{Instead of adding a numeric copy of the variable pclass to the regression in (c), add the variable pclass to it (pclass is coded as a “factor”). Interpret your results.}
+This time the models estimates two coefficients for two dummy variables, $pclass2$ which is equal to $1$ when the passager is in second class, and similarly for $pclass3$. This regression adds information to the previous one as only one coefficient was used to describe an incrementation in the pclass variable. Results are displayed in Table \ref{prbtf}. We see that, as expected, the cheaper the seat you bought, the less chances of survival you had. Using the library margins, I find a marginal effect of $0.406$ for the female variable, as before, $-0.169$ for the $pclass2$ variable and $-0.295$ for the $pclass3$ variable. It means that the impact from moving from first class to the third is about twice as bad as moving from first class to the second. Put otherwise, the effect of a one unit incrementation of the pclass variable seems constant.
 \input{OUTPUT/probit_f.tex}
-This time the models estimates two coefficients for two dummy variables, $pclass2$ which is equal to $1$ when the passager is in second class, and similarly for $pclass3$. This regression adds information to the previous one as only one coefficient was used to describe an incrementation in the pclass variable. Results are displayed in table \ref{prbtf}. We see that, as expected, the cheaper the seat you bought, the less chances of survival you had. Using the library margins, I find a marginal effect of $0.406$ for the female variable, $-0.169$ for the $pclass2$ variable and $-0.295$. It means that the impact from moving from first class to the third is about twice as bad as moving from first class to the second. Put otherwise, the effect of a one unit incrementation of the pclass variable seems constant.
 
 \subsection{The model in (e) constitutes a restricted version of the model in (f). What is the restriction? Test it using a LR test. What do you find?}
 The model estimated in question (f) writes
 $$survived = \phi(\alpha + \beta_1 female + \beta_2 pclass2 + \beta_3 pclass 3)$$
 while the model the model in question (e) imposes the restriction $\beta_3 = 2 \beta_2$.
 Performing the LR test using the lrtest function from the lmtest package, we find that the number of interest is 0.16 derived from a $\chi^2(1)$ distribution under the null. This value is below the rejection threshold at the 10 \% level, we cannot reject the null hypothesis.
+
 \stepcounter{subsection}
 \subsection{Starting with your model specification in (e), add the variable $fare$. Use the Wald test and the LR test to test whether the coefficient on $fare$ is equal to zero. What do you find?}
 \input{OUTPUT/probit_i.tex}
-The LR does not reject the null as the outcome of the $\chi^2(1)$ distribution is $0.59$ and is below the rejection threshold at the 10 \% level meaning that the $fare$ coefficient is not statstically different from 0. We see in table \ref{prbti} that the coefficient is not significant at the 10 \% level according to the Wald test automatically performed. Both tests fail to reject the null. Fare does not seem to have any impact on the survival rate on board.
+The LR does not reject the null as the outcome of the $\chi^2(1)$ distribution is $0.59$ and is below the rejection threshold at the 10 \% level meaning that the $fare$ coefficient is not statstically different from 0. We see in Table \ref{prbti} that the coefficient is not significant at the 10 \% level according to the Wald test automatically performed. Both tests fail to reject the null. The variable $fare$ does not seem to have any impact on the survival rate on board.
+
 \subsection{Starting with your model specification in (e), add the variable age. Compute the partial effect of age for a female passenger in 1st class with “average” age.}
 \input{OUTPUT/probit_j.tex}
 Denoting $\bar{age}$ as the mean age of the population and denoting the model
 $$survived = \phi(\alpha + \beta_1 female + \beta_2 pclass + \beta_3 age),$$ the partial marginal impact of age 
 the partial marginal impact of interest is given by $\beta_3 \phi(\alpha + \beta_1 + \beta_2 + \beta_3 \bar{age})$ and we find $-0.0176$.
+
 \subsection{Using your model specification in (j), compute the average partial effect of age. What do you find?}
 Computing the average marginal effect using the predicition package, I find $-0.007$.
+
 \subsection{Using your model specification in (j), plot the sorted marginal effect of age. What do you find ?}
 \begin{figure}[h]
     \centering
