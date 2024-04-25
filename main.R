@@ -141,3 +141,18 @@ plot <- ggplot(df, aes(x = age,
   guides(color = guide_legend(title = "Class"))
 
 ggsave("OUTPUT/marginal_effect_age.png", plot, width = 8, height = 6, units = "in") #nolint
+
+# Calculate sorted marginal effects
+sorted_marginal_effects <- df %>%
+  arrange(marginal_effect) %>%
+  pull(marginal_effect)
+
+# Plot sorted marginal effects
+plot_sorted_marginal_effects <- ggplot() +
+  geom_line(aes(
+        x = 1:length(sorted_marginal_effects), #nolint
+        y = sorted_marginal_effects), color = "blue") +
+  labs(x = "Observation Index", y = "Sorted Marginal Effects")
+
+# Save the plot with an appropriate name
+ggsave("OUTPUT/sorted_marginal_effects.png", plot_sorted_marginal_effects, width = 8, height = 6, units = "in") #nolint
