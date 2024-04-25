@@ -83,8 +83,8 @@ The LR does not reject the null as the outcome of the $\chi^2(1)$ distribution i
 \subsection{Starting with your model specification in (e), add the variable age. Compute the partial effect of age for a female passenger in 1st class with “average” age.}
 \input{OUTPUT/probit_j.tex}
 Denoting $\bar{age}$ as the mean age of the population and denoting the model
-$$\mathbb{P}(survived = 1 | female, pclass, age) = \phi(\alpha + \beta_1 female + \beta_2 pclass + \beta_3 age),$$ the partial marginal impact of age 
-the partial marginal impact of interest is given by $\beta_3 \phi(\alpha + \beta_1 + \beta_2 + \beta_3 \bar{age})$ and we find $-0.0176$.
+$$\mathbb{P}(survived = 1 | female, pclass, age) = \phi(\alpha + \beta_1 female + \beta_2 pclass + \beta_3 age),$$
+the partial effect of age for a female passenger in first class at the average age is given by $\beta_3 \phi(\alpha + \beta_1 + \beta_2 + \beta_3 \bar{age})$ and we find $-0.0176$.
 
 \subsection{Using your model specification in (j), compute the average partial effect of age. What do you find?}
 Computing the average marginal effect using the predicition package, I find $-0.007$.
