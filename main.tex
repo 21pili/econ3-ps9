@@ -71,7 +71,7 @@ This time the models estimates two coefficients for two dummy variables, $pclass
 
 \subsection{The model in (e) constitutes a restricted version of the model in (f). What is the restriction? Test it using a LR test. What do you find?}
 The model estimated in question (f) writes
-$$\mathbb{P}(survived = 1) = \phi(\alpha + \beta_1 female + \beta_2 pclass2 + \beta_3 pclass 3)$$
+$$\mathbb{P}(survived = 1 | female, pclass) = \phi(\alpha + \beta_1 female + \beta_2 pclass2 + \beta_3 pclass 3)$$
 while the model the model in question (e) imposes the restriction $\beta_3 = 2 \beta_2$.
 Performing the LR test using the lrtest function from the lmtest package, we find that the number of interest is 0.16 derived from a $\chi^2(1)$ distribution under the null. This value is below the rejection threshold at the 10 \% level, we cannot reject the null hypothesis.
 
@@ -83,7 +83,7 @@ The LR does not reject the null as the outcome of the $\chi^2(1)$ distribution i
 \subsection{Starting with your model specification in (e), add the variable age. Compute the partial effect of age for a female passenger in 1st class with “average” age.}
 \input{OUTPUT/probit_j.tex}
 Denoting $\bar{age}$ as the mean age of the population and denoting the model
-$$\mathbb{P}(survived = 1) = \phi(\alpha + \beta_1 female + \beta_2 pclass + \beta_3 age),$$ the partial marginal impact of age 
+$$\mathbb{P}(survived = 1 | female, pclass, age) = \phi(\alpha + \beta_1 female + \beta_2 pclass + \beta_3 age),$$ the partial marginal impact of age 
 the partial marginal impact of interest is given by $\beta_3 \phi(\alpha + \beta_1 + \beta_2 + \beta_3 \bar{age})$ and we find $-0.0176$.
 
 \subsection{Using your model specification in (j), compute the average partial effect of age. What do you find?}
